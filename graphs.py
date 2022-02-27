@@ -11,17 +11,19 @@ ROUTES = [["CHLF", "WRGL"],
         ["TIZI", "ORN"]]
 
 class Graph:
-    def has_route(self, frm: str, to: str):
-        graph = self.create_graph()
-        if frm not in graph:
+    def __init__(self):
+        self.graph = self.create_graph()
+
+    def has_route(self, frm: str, to: str): # breadth first search
+        if frm not in self.graph:
             return False
         queue = [frm]
         while queue:
             node = queue.pop(0)
             if node == to:
                 return True
-            if node in graph:
-                for d in graph[node]:
+            if node in self.graph:
+                for d in self.graph[node]:
                     queue.append(d)
                 
     @staticmethod
