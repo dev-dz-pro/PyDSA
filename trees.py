@@ -58,6 +58,16 @@ class Tree():
             self.postorder(node.right)
         print(node.data)
 
+    def breadth_traversal(self, node):
+        queue = [node]
+        while queue:
+            node = queue.pop(0)
+            print(node.data)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
     
 
 
@@ -78,3 +88,5 @@ if __name__ == '__main__':
     tree.preorder(root)
     print("------------------postorder-------------------")
     tree.postorder(root)
+    print("------------------breadth_traversal-------------------")
+    tree.breadth_traversal(root)
