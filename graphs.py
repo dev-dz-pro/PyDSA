@@ -14,7 +14,7 @@ class Graph:
     def __init__(self):
         self.graph = self.create_graph()
 
-    def has_route(self, frm: str, to: str): # breadth first search
+    def has_route_bfs(self, frm: str, to: str): # breadth first search
         if frm not in self.graph:
             return False
         queue = [frm]
@@ -25,6 +25,18 @@ class Graph:
             if node in self.graph:
                 for d in self.graph[node]:
                     queue.append(d)
+    
+    def has_route_dfs(self, frm: str, to: str): # depth first search
+        if frm not in self.graph:
+            return False
+        stack = [frm]
+        while stack:
+            node = stack.pop()
+            if node == to:
+                return True
+            if node in self.graph:
+                for d in self.graph[node]:
+                    stack.append(d)
                 
     @staticmethod
     def create_graph():
@@ -42,4 +54,7 @@ class Graph:
 
 if __name__ == '__main__':
     graph = Graph()
-    print(graph.has_route("ALG", "ORN"))
+    print("BFS:")
+    print(graph.has_route_bfs("ALG", "ORN"))
+    print("DFS:")
+    print(graph.has_route_dfs("ALG", "TIZI"))
