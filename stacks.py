@@ -1,5 +1,4 @@
 # Fish STACK EXERCISE - solution for https://app.codility.com/programmers/lessons/7-stacks_and_queues/fish/
-
 def solution(A:list[int], B:list[int]):
     stack = []
     for i in range(len(A)):
@@ -18,7 +17,6 @@ def solution(A:list[int], B:list[int]):
 
 
 # StoneWall STACK EXERCISE - solution for https://app.codility.com/programmers/lessons/7-stacks_and_queues/stone_wall/
-
 def solution(H:list[int]):
     stack = []
     res = 0
@@ -40,3 +38,19 @@ def solution(H:list[int]):
             else:
                 stack.append(H[i])
     return len(stack) + res
+
+
+# Brackets STACK EXERCISE - solution for https://app.codility.com/programmers/lessons/7-stacks_and_queues/brackets/
+def solution(S:str):
+    if S == "":
+        return 1
+    stack = []
+    for c in S:
+        if c in ["(", "{", "["]:
+            stack.append(c)
+        else:
+            if stack and ((c == ")" and stack[-1] == "(") or (c == "}" and stack[-1] == "{") or (c == "]" and stack[-1] == "[")):
+                stack.pop()
+            else:
+                return 0
+    return 1 if not stack else 0
