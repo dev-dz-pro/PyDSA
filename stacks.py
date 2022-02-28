@@ -40,8 +40,8 @@ def solution(H:list[int]):
     return len(stack) + res
 
 
-# Brackets STACK EXERCISE - solution for https://app.codility.com/programmers/lessons/7-stacks_and_queues/brackets/
-def solution(S:str):
+# Brackets STACK EXERCISE - solution for https://app.codility.com/programmers/lessons/7-stacks_and_queues/brackets/  and  https://app.codility.com/programmers/lessons/7-stacks_and_queues/nesting/
+def solution(S:str): 
     if S == "":
         return 1
     stack = []
