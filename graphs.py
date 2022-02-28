@@ -1,4 +1,4 @@
-# DIRECTED SYCLE GRAPH
+# DIRECTED & No CYCLE GRAPH
 
 AIRPORTS = ["CHLF", "ALG", "ORN", "TIZI", "WRGL"]
 ROUTES = [["CHLF", "WRGL"], 
@@ -16,25 +16,40 @@ class Graph:
 
     def has_route_bfs(self, frm: str, to: str): # breadth first search
         queue = [frm]
+        visited = set()
         while queue:
-            node = queue.pop(0)
-            if node == to:
+            airport = queue.pop(0)
+            print(airport) # to display visited airports
+            if airport == to:
                 return True
-            if node in self.graph:
-                for d in self.graph[node]:
-                    queue.append(d)
+            if airport in self.graph:
+                for d in self.graph[airport]:
+                    if d not in visited:
+                        queue.append(d)
+                        visited.add(d)
         return False
     
     def has_route_dfs(self, frm: str, to: str): # depth first search
         stack = [frm]
+        visited = set()
         while stack:
-            node = stack.pop()
-            if node == to:
+            airport = stack.pop()
+            print(airport) # to display visited airports
+            if airport == to:
                 return True
-            if node in self.graph:
-                for d in self.graph[node]:
-                    stack.append(d)
+            if airport in self.graph:
+                for d in self.graph[airport]:
+                    if d not in visited:
+                        stack.append(d)
+                        visited.add(d)
         return False
+
+
+    def shortest_path_bfs(self, frm: str, to: str):
+        pass
+
+    def shortest_path_dfs(self, frm: str, to: str):
+        pass
                 
     @staticmethod
     def create_graph():
@@ -52,7 +67,11 @@ class Graph:
 
 if __name__ == '__main__':
     graph = Graph()
-    print("BFS:")
+    print("--------------------- BFS - ALG -> ORN ---------------------")
     print(graph.has_route_bfs("ALG", "ORN"))
-    print("DFS:")
+    print("--------------------- BFS - WRGL -> TIZI ---------------------")
+    print(graph.has_route_bfs("WRGL", "TIZI"))
+    print("--------------------- DFS - ALG -> ORN ---------------------")
+    print(graph.has_route_dfs("ALG", "ORN"))
+    print("--------------------- DFS - WRGL -> TIZI ---------------------")
     print(graph.has_route_dfs("WRGL", "TIZI"))
